@@ -25,7 +25,7 @@ def validar_numeros(numero):
 
 
 class Ciudad(models.Model):
-    nombre = models.CharField(max_length=25)
+    nombre = models.CharField(max_length=26)
     def __unicode__(self):
         return self.nombre
 class Programa(models.Model):
