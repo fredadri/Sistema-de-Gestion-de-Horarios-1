@@ -25,7 +25,7 @@ def validar_numeros(numero):
 
 
 class Ciudad(models.Model):
-    nombre = models.CharField(max_length=26)
+    nombre = models.CharField(max_length=25)
     def __unicode__(self):
         return self.nombre
 class Programa(models.Model):
@@ -138,4 +138,24 @@ class Contrato(models.Model):
 
     def __unicode__(self):
         return self.numero_contrato + ' ' + self.nombre + ' ' + self.apellidos
+        
+class Actividad(models.Model):
+     programa = models.ForeignKey(Programa)
+     nivel = models.ForeignKey(Nivel)
+     leccion = models.CharField(max_length=6)
+     def __unicode__(self):
+        return self.leccion
 
+class Estado(models.Model):
+    nombre = models.CharField(max_length=30)
+    def __unicode__(self):
+        return self.nombre
+
+
+class Seguimiento(models.Model):
+    estudiante =  models.ForeignKey(Contrato)
+    comentario = models.TextField()
+    estado = models.ForeignKey(Estado)
+
+    def __unicode__(self):
+        return "%s -  %s-  %s" % (self.estudiante,self.comentario,self.estado)
